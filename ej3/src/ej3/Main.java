@@ -14,6 +14,8 @@ public class Main {
         
         teclado.pulsar();
         teclado.conectar();
+        
+        System.out.println("Hay "+Periferico.getNumPerifericos()+" perifericos.");
     }
 }
 

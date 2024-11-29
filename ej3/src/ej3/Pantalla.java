@@ -31,7 +31,7 @@ public final class Pantalla extends Periferico{
 	 */
 	@Override
 	public void conectar() {
-		System.out.println("Conectando la pantalla: "+getNombre()+" a través de HDMI");
+		System.out.println("Conectando la pantalla: " + getNombre() + " a través de HDMI");
 	}
 
 }

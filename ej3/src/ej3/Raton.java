@@ -9,11 +9,11 @@ public final class Raton extends Periferico implements Pulsable{
 		this.dpi = dpi;
 		this.botones = botones;
 	}
-	
+
 	public int getDpi() {
 		return dpi;
 	}
-	
+
 	public void setDpi(int dpi) {
 		this.dpi = dpi;
 	}
@@ -31,7 +31,7 @@ public final class Raton extends Periferico implements Pulsable{
 	 */
 	@Override
 	public void pulsar() {
-		System.out.println("Pulsando el ratón: "+getNombre());
+		System.out.println("Pulsando el ratón: " + getNombre());
 	}
 	
 	/** 
@@ -39,7 +39,7 @@ public final class Raton extends Periferico implements Pulsable{
 	 */
 	@Override
 	public void conectar() {
-		System.out.println("Conectando el ratón: "+getNombre()+" a través de usb.");
+		System.out.println("Conectando el ratón: " + getNombre() + " a través de usb.");
 	}
 	
 }

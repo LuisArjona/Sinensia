@@ -32,7 +32,7 @@ public final class Teclado extends Periferico implements Pulsable{
 	 */
 	@Override
 	public void conectar() {
-		System.out.println("Conectando el teclado: "+getNombre()+" a través de USB.");
+		System.out.println("Conectando el teclado: " + getNombre() + " a través de USB.");
 	}
 	
 	/** 
@@ -40,7 +40,7 @@ public final class Teclado extends Periferico implements Pulsable{
 	 */
 	@Override
 	public void pulsar() {
-		System.out.println("Pulsando las teclas del teclado: "+getNombre());
+		System.out.println("Pulsando las teclas del teclado: " + getNombre());
 	}
 
 }
