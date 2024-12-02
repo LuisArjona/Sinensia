@@ -1,6 +1,8 @@
-package ejTraduccion;
+package com.sinensia.main;
 
 import java.util.Scanner;
+
+import com.sinensia.utilities.services.impl.TransformadorNumerosImpl;
 
 public class Main {
 
@@ -26,8 +28,9 @@ public class Main {
 		
 		
 		for(int i=0;i<1000;i++) {
-			System.out.println(TransformadorNumeros.transformarNumero(i));
+			System.out.println(TransformadorNumerosImpl.transformarNumero(i));
 		}
+		
 
 
 

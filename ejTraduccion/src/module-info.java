@@ -5,5 +5,3 @@
  * @author Admin
  *
  */
-module ejTraduccion {
-}

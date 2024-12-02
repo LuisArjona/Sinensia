@@ -1,12 +1,14 @@
-package ejTraduccion;
+package com.sinensia.utilities.services.impl;
 import java.util.TreeMap;
+
+import com.sinensia.utilities.services.TransformarNumero;
 
 /**
  * La clase TransformadorNumeros transforma numeros a distintos formatos.
  * @authors Miguel Alonso & Luis Arjona
  *
  */
-public class TransformadorNumeros {
+public class TransformadorNumerosImpl implements TransformarNumero{
 	
 	private static final TreeMap<Integer, String> unidades = new TreeMap<Integer, String>() {{
 	    put(0, "Cero");
@@ -121,14 +123,14 @@ public class TransformadorNumeros {
 	}
 	
 	/**
-	 * Transforma un entero de hasta tres cifras a su String correspondiente
+	 * Transforma un entero de hasta tres cifras a su palabra correspondiente
 	 * @param Numero a transformar
 	 * @return Numero como palabra
 	 */
 	public static String transformarNumero(int num) {
 
 		if(num < 0 || num > 999) {
-			return "No se puede transformar el numero.";
+			throw new IllegalArgumentException();
 		}else if(num >= 11 && num <= 15 || (String.valueOf(num).contains("0") && num != 0)) {
 			return transformarExcepcion(num);
 		}else if(num < 10) {
