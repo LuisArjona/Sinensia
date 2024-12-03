@@ -1,12 +1,14 @@
-package ejTraduccion;
+package com.sinensia.utilities.services.impl;
 import java.util.TreeMap;
+
+import com.sinensia.utilities.services.TransformarNumero;
 
 /**
  * La clase TransformadorNumeros transforma numeros a distintos formatos.
  * @authors Miguel Alonso & Luis Arjona
  *
  */
-public class TransformadorNumeros {
+public class TransformadorNumerosImpl implements TransformarNumero{
 	
 	private static final TreeMap<Integer, String> unidades = new TreeMap<Integer, String>() {{
 	    put(0, "Cero");
@@ -31,11 +33,6 @@ public class TransformadorNumeros {
 	    put(7, "Setenta y ");
 	    put(8, "Ochenta y ");
 	    put(9, "Noventa y ");
-	    put(11, "Once");
-	    put(12, "Doce");
-	    put(13, "Trece");
-	    put(14, "Catorce");
-	    put(15, "Quince");
 	}};
 
 	private static final TreeMap<Integer, String> centenas = new TreeMap<Integer, String>() {{
@@ -78,8 +75,6 @@ public class TransformadorNumeros {
 	}
 	
 	public static String getCentena(int num) {
-		if(num==0)
-			return "";
 		return centenas.get(num);
 	}
 	
@@ -114,32 +109,34 @@ public class TransformadorNumeros {
 			if(array[2] != '0')
 				numFinal += " " + getUnidad(Character.getNumericValue(array[2])).toLowerCase();
 		}
-			
-		numFinal=numFinal.replaceAll("y","");
 		
-		return numFinal;
+		return numFinal.replaceAll("y","").trim();
 	}
 	
 	/**
-	 * Transforma un entero de hasta tres cifras a su String correspondiente
+	 * Transforma un entero de hasta tres cifras a su palabra correspondiente
 	 * @param Numero a transformar
 	 * @return Numero como palabra
 	 */
 	public static String transformarNumero(int num) {
-
-		if(num < 0 || num > 999) {
-			return "No se puede transformar el numero.";
-		}else if(num >= 11 && num <= 15 || (String.valueOf(num).contains("0") && num != 0)) {
-			return transformarExcepcion(num);
-		}else if(num < 10) {
-			return transformarUnidad(num);
-		}else if(num < 100) {
-			return transformarDecena(num);
-		}else if(num < 1000) {
-			return transformarCentena(num);
-		}		
 		
-		return "Error no previsto";
+		if(num>=0 && num<1000) {
+			if(num >= 11 && num <= 15 || (String.valueOf(num).contains("0") && num != 0)) {
+				return transformarExcepcion(num);
+			}
+			if(num < 10) {
+				return transformarUnidad(num);
+			}
+			if(num < 100) {
+				return transformarDecena(num);
+			}
+			if(num < 1000) {
+				return transformarCentena(num);
+			}	
+		}
+		
+		throw new IllegalArgumentException("Valor fuera de rango.");
+		
 	}
 	
 	/**
@@ -171,8 +168,9 @@ public class TransformadorNumeros {
 		String numero=String.valueOf(num);
 		char[]array=numero.toCharArray();
 		
-		if((num % 100 >= 11) && (num % 100 <= 15))
+		if(excepciones.containsKey(num%100))
 			return getCentena(Character.getNumericValue(array[0])) + " " + excepciones.get(num%100).toLowerCase();
+		
 		return getCentena(Character.getNumericValue(array[0]))+ " " + (getDecena(Character.getNumericValue(array[1]))).toLowerCase() + (getUnidad(Character.getNumericValue(array[2]))).toLowerCase();
 			
 	}
